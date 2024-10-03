@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/Users/erlendfalkeid/.nuget/packages/": {}
+    "/Users/tobiasengedalek/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/erlendfalkeid/MyMvcApp/MyMvcApp/MyMvcApp.csproj",
+      "projectUniqueName": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/MyMvcApp.csproj",
       "projectName": "MyMvcApp",
-      "projectPath": "/Users/erlendfalkeid/MyMvcApp/MyMvcApp/MyMvcApp.csproj",
-      "packagesPath": "/Users/erlendfalkeid/.nuget/packages/",
-      "outputPath": "/Users/erlendfalkeid/MyMvcApp/MyMvcApp/obj/",
+      "projectPath": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/MyMvcApp.csproj",
+      "packagesPath": "/Users/tobiasengedalek/.nuget/packages/",
+      "outputPath": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/erlendfalkeid/.nuget/NuGet/NuGet.Config"
+        "/Users/tobiasengedalek/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

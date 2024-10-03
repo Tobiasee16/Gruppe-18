@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyMvcApp.styles.css" asp-append-version="true" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <header>
@@ -36,6 +38,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            <div id="map" style="width: 100%; height: 500px;"></div>
         </main>
     </div>
 
@@ -44,9 +47,48 @@
             &copy; 2024 - MyMvcApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialiser kartet
+        var map = L.map('map').setView([59.9139, 10.7522], 13); // Bruker koordinater for Oslo som eksempel
+
+        // Legg til OpenStreetMap lag
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Legg til en markør
+        var marker = L.marker([59.9139, 10.7522]).addTo(map);
+        marker.bindPopup("<b>Hei!</b><br>Dette er en markør.").openPopup();
+
+        // Håndter klikk på kartet
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            alert("Du klikket på kartet på koordinater: " + lat + ", " + lng);
+
+            // Send data til serveren
+            $.ajax({
+                type: "POST",
+                url: '/YourController/YourAction', // Erstatt med riktig controller og handling
+                data: { latitude: lat, longitude: lng },
+                success: function(response) {
+                    console.log("Data sendt til server");
+                },
+                error: function(err) {
+                    console.log("Feil ved sending av data: ", err);
+                }
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
