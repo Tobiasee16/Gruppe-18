@@ -1,0 +1,14 @@
+@model MyMvcApp.Models.UserViewModel
+
+<h2>Brukerdata</h2>
+<form asp-action="" method="post">
+    <div class="form-group">
+        <label for="Name">Navn</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Age">Alder</label>
+        <input type="number" class="form-control" id="Age" name="Age" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Send inn</button>
+</form>

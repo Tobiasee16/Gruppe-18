@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container">
+    <h1 class="text-center">Dynamisk Innhold fra Server</h1>
+    <div id="dynamicContent" class="alert alert-info">
+        <!-- Dynamisk innhold vil bli lastet her -->
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("dynamicContent").innerHTML = data.message;
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            document.getElementById("dynamicContent").innerHTML = "Noe gikk galt!";
+        });
+});
+</script>
