@@ -1,5 +1,13 @@
 ﻿@model MyMvcApp.Models.UserViewModel
 
+<form method="post" asp-action="SubmitData">
+    <div class="form-group">
+        <label for="userInput">Data fra brukeren:</label>
+        <input type="text" class="form-control" id="userInput" name="userInput" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
 @{
     ViewData["Title"] = "Data";
 }

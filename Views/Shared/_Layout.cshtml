@@ -56,7 +56,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialiser kartet
-        var map = L.map('map').setView([59.9139, 10.7522], 13); // Bruker koordinater for Oslo som eksempel
+        var map = L.map('map').setView([58.1474, 7.9969], 13); // Bruker koordinater for Oslo som eksempel
 
         // Legg til OpenStreetMap lag
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,7 +65,7 @@
         }).addTo(map);
 
         // Legg til en markør
-        var marker = L.marker([59.9139, 10.7522]).addTo(map);
+        var marker = L.marker([58.1474, 7.9969]).addTo(map);
         marker.bindPopup("<b>Hei!</b><br>Dette er en markør.").openPopup();
 
         // Håndter klikk på kartet
@@ -91,4 +91,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
 
