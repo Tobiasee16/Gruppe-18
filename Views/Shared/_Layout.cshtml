@@ -1,10 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MyMvcApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+ <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyMvcApp.styles.css" asp-append-version="true" />
     <!-- Leaflet CSS -->
@@ -12,29 +6,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyMvcApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Data">Data</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+@@ -36,6 +38,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -42,38 +14,32 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+@@ -44,9 +47,48 @@
             &copy; 2024 - MyMvcApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="="~/js/site.js" asp-append-version="true"></script>
-
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialiser kartet
-        var map = L.map('map').setView([58.1474, 7.9969], 13); // Bruker koordinater for Oslo som eksempel
-
+        var map = L.map('map').setView([59.9139, 10.7522], 13); // Bruker koordinater for Oslo som eksempel
         // Legg til OpenStreetMap lag
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
-
         // Legg til en markør
-        var marker = L.marker([58.1474, 7.9969]).addTo(map);
+        var marker = L.marker([59.9139, 10.7522]).addTo(map);
         marker.bindPopup("<b>Hei!</b><br>Dette er en markør.").openPopup();
-
         // Håndter klikk på kartet
         map.on('click', function(e) {
             var lat = e.latlng.lat;
             var lng = e.latlng.lng;
             alert("Du klikket på kartet på koordinater: " + lat + ", " + lng);
-
             // Send data til serveren
             $.ajax({
                 type: "POST",
