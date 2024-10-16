@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,35 +11,39 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">MyMvcApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Hjem</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Home/Privacy">Personvern</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Home/Data">Data</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-4">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyMvcApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Data">Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
             <div id="map" style="width: 100%; height: 500px;"></div>
         </main>
     </div>
 
-    <footer class="text-center mt-4">
-        <div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
             &copy; 2024 - MyMvcApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -47,25 +51,37 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Initialiser kartet
         var map = L.map('map').setView([59.9139, 10.7522], 13); // Bruker koordinater for Oslo som eksempel
+
         // Legg til OpenStreetMap lag
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
-        // Legg til en markør
-        var marker = L.marker([59.9139, 10.7522]).addTo(map);
-        marker.bindPopup("<b>Hei!</b><br>Dette er en markør.").openPopup();
+
+        // Legg til en flyttbar markør
+        var marker = L.marker([59.9139, 10.7522], { draggable: true }).addTo(map);
+        marker.bindPopup("<b>Hei!</b><br>Dette er en flyttbar markør.").openPopup();
+
+        // Håndter flytting av markøren
+        marker.on('dragend', function (e) {
+            var lat = e.target.getLatLng().lat;
+            var lng = e.target.getLatLng().lng;
+            alert("Markøren ble flyttet til: " + lat + ", " + lng);
+        });
+
         // Håndter klikk på kartet
         map.on('click', function(e) {
             var lat = e.latlng.lat;
             var lng = e.latlng.lng;
             alert("Du klikket på kartet på koordinater: " + lat + ", " + lng);
-            // Send data til serveren
+
+            // Send data til serveren (tilpass denne delen etter behov)
             $.ajax({
                 type: "POST",
                 url: '/YourController/YourAction', // Erstatt med riktig controller og handling
@@ -82,7 +98,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-
 
 
