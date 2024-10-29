@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/MyMvcApp.styles.css" asp-append-version="true" />
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
 </head>
 <body>
     <header>
@@ -54,6 +55,7 @@
 
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script>
         // Initialiser kartet
         var map = L.map('map').setView([59.9139, 10.7522], 13); // Bruker koordinater for Oslo som eksempel
@@ -64,35 +66,27 @@
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // Legg til en flyttbar markør
-        var marker = L.marker([59.9139, 10.7522], { draggable: true }).addTo(map);
-        marker.bindPopup("<b>Hei!</b><br>Dette er en flyttbar markør.").openPopup();
-
-        // Håndter flytting av markøren
-        marker.on('dragend', function (e) {
-            var lat = e.target.getLatLng().lat;
-            var lng = e.target.getLatLng().lng;
-            alert("Markøren ble flyttet til: " + lat + ", " + lng);
+        // Håndter klikk på kartet for å legge til en ny markør
+        map.on('click', function(e) {
+            var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+            newMarker.bindPopup("Ny markør på: " + e.latlng.lat + ", " + e.latlng.lng).openPopup();
         });
 
-        // Håndter klikk på kartet
-        map.on('click', function(e) {
-            var lat = e.latlng.lat;
-            var lng = e.latlng.lng;
-            alert("Du klikket på kartet på koordinater: " + lat + ", " + lng);
+        // Legg til tegneverktøy med Leaflet.draw for å kunne tegne figurer interaktivt
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
 
-            // Send data til serveren (tilpass denne delen etter behov)
-            $.ajax({
-                type: "POST",
-                url: '/YourController/YourAction', // Erstatt med riktig controller og handling
-                data: { latitude: lat, longitude: lng },
-                success: function(response) {
-                    console.log("Data sendt til server");
-                },
-                error: function(err) {
-                    console.log("Feil ved sending av data: ", err);
-                }
-            });
+        // Håndter tegne-event for å legge til figurer som markører, linjer og polygoner
+        map.on('draw:created', function (event) {
+            var layer = event.layer;
+            drawnItems.addLayer(layer);
+            layer.bindPopup("Ny figur lagt til.");
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
