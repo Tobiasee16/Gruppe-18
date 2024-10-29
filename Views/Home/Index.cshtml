@@ -6,8 +6,15 @@
         <label for="name">Input Navn</label>
         <input asp-for="Name" id="name" type="text" />
 
-        <label for="name">Input Age</label>
+        <label for="age">Input Alder</label>
         <input asp-for="Age" id="age" type="number" />
     </div>
     <button type="submit" class="btn btn-primary">Send inn</button>
 </form>
+
+<!-- Legg til en lenke for å rapportere feil -->
+<div style="margin-top: 20px;">
+    <a asp-action="ReportError" asp-controller="Home" class="btn btn-secondary">
+        Rapporter en feil
+    </a>
+</div>
