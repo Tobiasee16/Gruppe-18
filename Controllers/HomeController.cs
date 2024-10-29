@@ -13,6 +13,12 @@ namespace MyMvcApp.Controllers
             _logger = logger;
         }
 
+        // Forsiden av applikasjonen
+        public IActionResult Home()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -47,8 +53,6 @@ namespace MyMvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Du kan her lagre dataene i en database eller utføre annen logikk.
-                // For nå sender vi dataene videre til en bekreftelsesside.
                 return View("ErrorReportConfirmation", model);
             }
 
