@@ -30,16 +30,7 @@ namespace MyMvcApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Data(string name, int age)
-        {
-            var model = new UserViewModel
-            {
-                Name = name,
-                Age = age,
-            };
-            return View(model);
-        }
-
+        
         // Viser skjemaet for å rapportere feil
         [HttpGet]
         public IActionResult ReportError()

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/MyMvcApp.csproj",
+      "projectUniqueName": "/Users/tobiasengedalek/Desktop/Gruppe-18/MyMvcApp.csproj",
       "projectName": "MyMvcApp",
-      "projectPath": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/MyMvcApp.csproj",
+      "projectPath": "/Users/tobiasengedalek/Desktop/Gruppe-18/MyMvcApp.csproj",
       "packagesPath": "/Users/tobiasengedalek/.nuget/packages/",
-      "outputPath": "/Users/tobiasengedalek/Documents/GitHub/Gruppe-18/obj/",
+      "outputPath": "/Users/tobiasengedalek/Desktop/Gruppe-18/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tobiasengedalek/.nuget/NuGet/NuGet.Config"
