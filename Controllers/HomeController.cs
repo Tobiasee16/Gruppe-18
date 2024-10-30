@@ -30,7 +30,16 @@ namespace MyMvcApp.Controllers
         }
 
         [HttpGet]
-        
+        public IActionResult Data(string name, int age)
+        {
+            var model = new UserViewModel
+            {
+                Name = name,
+                Age = age,
+            };
+            return View(model);
+        }
+
         // Viser skjemaet for å rapportere feil
         [HttpGet]
         public IActionResult ReportError()
@@ -48,6 +57,28 @@ namespace MyMvcApp.Controllers
             }
 
             return View("ReportError");
+        }
+
+        // Viser innloggingssiden
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // Håndterer innloggingsforespørselen
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Implementer innloggingslogikk her, for eksempel autentisering mot en database
+                // Hvis innlogging er vellykket, kan du omdirigere til en annen side, som forside eller dashboard
+                return RedirectToAction("Index");
+            }
+
+            // Hvis modellen ikke er gyldig, vis innloggingsskjemaet igjen med valideringsfeil
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
