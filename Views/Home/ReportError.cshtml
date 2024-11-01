@@ -1,15 +1,21 @@
 @model MyMvcApp.Models.ErrorReport
 
-<h2>Rapporter en feil</h2>
+<div class="report-container" style="max-width: 800px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; font-size: 2em; font-weight: bold; margin-bottom: 20px; color: #333;">Rapporter en feil</h2>
 
-<form asp-action="SubmitErrorReport" method="post">
-    <div class="form-group">
-        <label for="description">Beskrivelse av feil</label>
-        <textarea asp-for="Description" class="form-control" id="description" rows="3" required></textarea>
-    </div>
-    <div class="form-group">
-        <label for="location">Sted</label>
-        <input asp-for="Location" class="form-control" id="location" required />
-    </div>
-    <button type="submit" class="btn btn-primary mt-3">Send inn</button>
-</form>
+    <form asp-action="SubmitErrorReport" method="post">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="description" style="font-weight: bold; color: #555;">Beskrivelse av feil</label>
+            <textarea asp-for="Description" class="form-control" id="description" rows="4" placeholder="Beskriv problemet her..." required></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="location" style="font-weight: bold; color: #555;">Sted</label>
+            <input asp-for="Location" class="form-control" id="location" placeholder="Angi sted..." required />
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1.1em; border-radius: 5px;">Send inn</button>
+    </form>
+</div>
+
+<!-- Kartseksjon -->
+<div id="map" style="margin-top: 30px; height: 500px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></div>
