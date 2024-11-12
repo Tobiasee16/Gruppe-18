@@ -81,6 +81,19 @@ namespace MyMvcApp.Controllers
             return View(model);
         }
 
+        // Ny handling for admin-siden
+        public IActionResult Admin()
+        {
+            // Hent innmeldinger fra en database eller en annen kilde
+            var reports = new List<ErrorReport>
+            {
+                new ErrorReport { Id = 1, Description = "Feil i kartdata", Location = "Oslo", DateReported = DateTime.Now },
+                new ErrorReport { Id = 2, Description = "Manglende vei", Location = "Bergen", DateReported = DateTime.Now.AddDays(-1) }
+            };
+
+            return View(reports);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

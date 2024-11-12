@@ -1,0 +1,29 @@
+@model IEnumerable<MyMvcApp.Models.ErrorReport>
+
+@{
+    ViewData["Title"] = "Admin Side";
+}
+
+<h1>Innmeldinger fra Brukere</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Beskrivelse</th>
+            <th>Sted</th>
+            <th>Dato Rapportert</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.Id</td>
+                <td>@report.Description</td>
+                <td>@report.Location</td>
+                <td>@report.DateReported.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
