@@ -84,14 +84,38 @@ namespace MyMvcApp.Controllers
         // Ny handling for admin-siden
         public IActionResult Admin()
         {
-            // Hent innmeldinger fra en database eller en annen kilde
+            // Generer 10 ulike innmeldinger
             var reports = new List<ErrorReport>
             {
                 new ErrorReport { Id = 1, Description = "Feil i kartdata", Location = "Oslo", DateReported = DateTime.Now },
-                new ErrorReport { Id = 2, Description = "Manglende vei", Location = "Bergen", DateReported = DateTime.Now.AddDays(-1) }
+                new ErrorReport { Id = 2, Description = "Manglende vei", Location = "Bergen", DateReported = DateTime.Now.AddDays(-1) },
+                new ErrorReport { Id = 3, Description = "Feil adresse", Location = "Trondheim", DateReported = DateTime.Now.AddDays(-2) },
+                new ErrorReport { Id = 4, Description = "Feil bygning", Location = "Stavanger", DateReported = DateTime.Now.AddDays(-3) },
+                new ErrorReport { Id = 5, Description = "Manglende bygning", Location = "Kristiansand", DateReported = DateTime.Now.AddDays(-4) },
+                new ErrorReport { Id = 6, Description = "Feil vei", Location = "Tromsø", DateReported = DateTime.Now.AddDays(-5) },
+                new ErrorReport { Id = 7, Description = "Feil postnummer", Location = "Drammen", DateReported = DateTime.Now.AddDays(-6) },
+                new ErrorReport { Id = 8, Description = "Feil kommune", Location = "Fredrikstad", DateReported = DateTime.Now.AddDays(-7) },
+                new ErrorReport { Id = 9, Description = "Feil fylke", Location = "Sandnes", DateReported = DateTime.Now.AddDays(-8) },
+                new ErrorReport { Id = 10, Description = "Feil land", Location = "Ålesund", DateReported = DateTime.Now.AddDays(-9) }
             };
 
             return View(reports);
+        }
+
+        // Ny handling for brukersiden
+        public IActionResult UserReports()
+        {
+            // Generer 5 ulike innmeldinger for brukeren
+            var userReports = new List<ErrorReport>
+            {
+                new ErrorReport { Id = 1, Description = "Feil i kartdata", Location = "Oslo", DateReported = DateTime.Now },
+                new ErrorReport { Id = 2, Description = "Manglende vei", Location = "Bergen", DateReported = DateTime.Now.AddDays(-1) },
+                new ErrorReport { Id = 3, Description = "Feil adresse", Location = "Trondheim", DateReported = DateTime.Now.AddDays(-2) },
+                new ErrorReport { Id = 4, Description = "Feil bygning", Location = "Stavanger", DateReported = DateTime.Now.AddDays(-3) },
+                new ErrorReport { Id = 5, Description = "Manglende bygning", Location = "Kristiansand", DateReported = DateTime.Now.AddDays(-4) }
+            };
+
+            return View(userReports);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
