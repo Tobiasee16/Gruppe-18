@@ -92,7 +92,7 @@ namespace MyMvcApp.Controllers
         // Ny handling for admin-siden
         public IActionResult Admin()
         {
-            ViewBag.ShowMap = true;
+            ViewBag.ShowMap = false;
             // Generer 10 ulike innmeldinger
             var reports = new List<ErrorReport>
             {
@@ -114,7 +114,7 @@ namespace MyMvcApp.Controllers
         // Ny handling for brukersiden
         public IActionResult UserReports()
         {
-            ViewBag.ShowMap = true;
+            ViewBag.ShowMap = false;
             // Generer 5 ulike innmeldinger for brukeren
             var userReports = new List<ErrorReport>
             {
