@@ -1,6 +1,83 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
+
 <h1>@ViewData["Title"]</h1>
 
-<p>Vi henter ikke informasjon fra deg. Vi lover!</p>
+<div class="privacy-section">
+    <p>Vi i Kartverket tar ditt personvern på alvor. Vi ønsker å være transparente om hvordan vi håndterer dine data, selv om vi ikke samler inn noen personlig informasjon fra deg.</p>
+
+    <h2>Informasjonsinnsamling</h2>
+    <p>Vi samler ikke inn noen personlig informasjon fra deg. Dette inkluderer, men er ikke begrenset til:</p>
+    <ul>
+        <li>Lokasjonsdata</li>
+        <li>IP-adresse</li>
+        <li>Brukeratferd</li>
+    </ul>
+    <p>Vi lover at ingen av disse dataene blir lagret eller brukt.</p>
+
+    <h2>Hvordan vi beskytter dine data</h2>
+    <p>Selv om vi ikke samler inn noen data, er vi forpliktet til å beskytte ditt personvern. Vi bruker sikre teknologier og følger beste praksis for å sikre at ingen uautorisert tilgang skjer.</p>
+
+    <h2>Ofte stilte spørsmål (FAQ)</h2>
+    <div class="faq">
+        <h3>Hvordan kan jeg være sikker på at ingen data samles?</h3>
+        <p>Vi har implementert strenge retningslinjer og teknologier for å sikre at ingen data samles inn fra våre brukere.</p>
+
+        <h3>Hva skjer om dette endrer seg i fremtiden?</h3>
+        <p>Hvis vi noen gang bestemmer oss for å samle inn data, vil vi oppdatere denne personvernerklæringen og informere våre brukere på forhånd.</p>
+    </div>
+
+    <h2>Eksterne ressurser</h2>
+    <p>For mer informasjon om personvern, vennligst besøk <a href="https://www.datatilsynet.no/">Datatilsynet</a>.</p>
+
+    <h2>Kontakt oss</h2>
+    <p><i class="fas fa-phone"></i> Telefon: 32 11 80 00</p>
+    <p><i class="fas fa-envelope"></i> E-post: <a href="mailto:post@kartverket.no">post@kartverket.no</a></p>
+    <p><a href="https://www.kartverket.no/kontakt-oss">Kontaktinfo og adresser</a></p>
+
+    <h2>Åpningstider (mandag–fredag)</h2>
+    <p>Kundesenter/sentralbord: 09.00–15.00</p>
+    <p>Resepsjon: 08.00–15.00</p>
+
+    <h2>Hjelp</h2>
+    <ul>
+        <li><a href="https://www.kartverket.no/driftsmeldinger">Driftsmeldinger</a></li>
+        <li><a href="https://www.kartverket.no/ofte-stilte-sporsmal">Ofte stilte spørsmål</a></li>
+        <li><a href="https://www.kartverket.no/skjemaer">Skjemaer</a></li>
+    </ul>
+
+    <h2>Aktuelt</h2>
+    <ul>
+        <li><a href="https://www.kartverket.no/arrangementer-og-kurs">Arrangementer og kurs</a></li>
+        <li><a href="https://www.kartverket.no/nyheter">Nyheter</a></li>
+        <li><a href="https://www.kartverket.no/ledige-stillinger">Ledige stillinger</a></li>
+        <li><a href="https://www.kartverket.no/presse">Presse</a></li>
+    </ul>
+
+    <p class="updated-date">Oppdatert: @DateTime.Now.ToString("dd MMMM yyyy")</p>
+</div>
+
+<style>
+    .privacy-section {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+    .privacy-section h2 {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+    .privacy-section ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+    .faq h3 {
+        margin-top: 15px;
+        font-size: 1.2em;
+    }
+    .updated-date {
+        margin-top: 20px;
+        font-style: italic;
+        color: #555;
+    }
+</style>

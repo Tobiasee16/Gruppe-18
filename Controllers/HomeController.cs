@@ -16,22 +16,26 @@ namespace MyMvcApp.Controllers
         // Forsiden av applikasjonen
         public IActionResult Home()
         {
+            ViewBag.ShowMap = true;
             return View();
         }
 
         public IActionResult Index()
         {
+            ViewBag.ShowMap = true;
             return View();
         }
 
         public IActionResult Privacy()
         {
+            ViewBag.ShowMap = false;
             return View();
         }
 
         [HttpGet]
         public IActionResult Data(string name, int age)
         {
+            ViewBag.ShowMap = true;
             var model = new UserViewModel
             {
                 Name = name,
@@ -44,6 +48,7 @@ namespace MyMvcApp.Controllers
         [HttpGet]
         public IActionResult ReportError()
         {
+            ViewBag.ShowMap = true;
             return View();
         }
 
@@ -51,6 +56,7 @@ namespace MyMvcApp.Controllers
         [HttpPost]
         public IActionResult SubmitErrorReport(ErrorReport model)
         {
+            ViewBag.ShowMap = true;
             if (ModelState.IsValid)
             {
                 return View("ErrorReportConfirmation", model);
@@ -63,6 +69,7 @@ namespace MyMvcApp.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.ShowMap = false;
             return View();
         }
 
@@ -70,6 +77,7 @@ namespace MyMvcApp.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
+            ViewBag.ShowMap = false;
             if (ModelState.IsValid)
             {
                 // Implementer innloggingslogikk her, for eksempel autentisering mot en database
@@ -84,6 +92,7 @@ namespace MyMvcApp.Controllers
         // Ny handling for admin-siden
         public IActionResult Admin()
         {
+            ViewBag.ShowMap = true;
             // Generer 10 ulike innmeldinger
             var reports = new List<ErrorReport>
             {
@@ -105,6 +114,7 @@ namespace MyMvcApp.Controllers
         // Ny handling for brukersiden
         public IActionResult UserReports()
         {
+            ViewBag.ShowMap = true;
             // Generer 5 ulike innmeldinger for brukeren
             var userReports = new List<ErrorReport>
             {
@@ -121,6 +131,7 @@ namespace MyMvcApp.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            ViewBag.ShowMap = false;
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

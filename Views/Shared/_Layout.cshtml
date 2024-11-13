@@ -47,7 +47,10 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-            <div id="map" style="width: 100%; height: 500px;"></div>
+            @if (ViewBag.ShowMap == true)
+            {
+                <div id="map" style="width: 100%; height: 500px;"></div>
+            }
         </main>
     </div>
 
@@ -64,39 +67,42 @@
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-    <script>
-        // Initialiser kartet
-        var map = L.map('map').setView([58.1476, 7.9970], 13); // Bruker koordinater for Kristiansand som eksempel
+    @if (ViewBag.ShowMap == true)
+    {
+        <script>
+            // Initialiser kartet
+            var map = L.map('map').setView([58.1476, 7.9970], 13); // Bruker koordinater for Kristiansand som eksempel
 
-        // Legg til OpenStreetMap lag
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+            // Legg til OpenStreetMap lag
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
 
-        // Håndter klikk på kartet for å legge til en ny markør
-        map.on('click', function(e) {
-            var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-            newMarker.bindPopup("Ny markør på: " + e.latlng.lat + ", " + e.latlng.lng).openPopup();
-        });
+            // Håndter klikk på kartet for å legge til en ny markør
+            map.on('click', function(e) {
+                var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+                newMarker.bindPopup("Ny markør på: " + e.latlng.lat + ", " + e.latlng.lng).openPopup();
+            });
 
-        // Legg til tegneverktøy med Leaflet.draw for å kunne tegne figurer interaktivt
-        var drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
-        var drawControl = new L.Control.Draw({
-            edit: {
-                featureGroup: drawnItems
-            }
-        });
-        map.addControl(drawControl);
+            // Legg til tegneverktøy med Leaflet.draw for å kunne tegne figurer interaktivt
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                }
+            });
+            map.addControl(drawControl);
 
-        // Håndter tegne-event for å legge til figurer som markører, linjer og polygoner
-        map.on('draw:created', function (event) {
-            var layer = event.layer;
-            drawnItems.addLayer(layer);
-            layer.bindPopup("Ny figur lagt til.");
-        });
-    </script>
+            // Håndter tegne-event for å legge til figurer som markører, linjer og polygoner
+            map.on('draw:created', function (event) {
+                var layer = event.layer;
+                drawnItems.addLayer(layer);
+                layer.bindPopup("Ny figur lagt til.");
+            });
+        </script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
