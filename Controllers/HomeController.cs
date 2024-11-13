@@ -16,7 +16,7 @@ namespace MyMvcApp.Controllers
         // Forsiden av applikasjonen
         public IActionResult Home()
         {
-            ViewBag.ShowMap = true;
+            ViewBag.ShowMap = false;
             return View();
         }
 

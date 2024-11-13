@@ -2,7 +2,7 @@
     ViewData["Title"] = "Velkommen til Kartverket";
 }
 
-<div style="text-align: center; padding: 20px; max-width: 800px; margin: auto;">
+<div style="text-align: center; padding: 20px; max-width: 800px; margin: auto; position: relative; z-index: 1;">
     <h1 style="font-size: 2.5em; font-weight: bold; margin-bottom: 10px;">Velkommen til Kartverket</h1>
     <p style="font-size: 1.2em; color: #555; margin-bottom: 20px;">
         Logg inn for å rapportere feil og holde kartet oppdatert og nøyaktig.
@@ -14,9 +14,32 @@
     </a>
 </div>
 
-<!-- Kart seksjon -->
-<div style="margin-top: 30px; text-align: center;">
-    <div id="map" style="height: 500px; width: 90%; max-width: 1200px; margin: auto; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 8px;">
-        <!-- Kartet vil bli lastet inn her -->
-    </div>
-</div>
+<style>
+    body {
+        background-image: url('/images/Norge natur.jpg'); /* Bytt ut med riktig bilde-URL */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh; /* Full høyde av viewport */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        background-color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+    }
+</style>
+
+<footer>
+    &copy; 2024 - Kartverket - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+</footer>
